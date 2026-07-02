@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Instalasi Macro AutoHotkey by Mixo</title>
+    <style>
+        /* ===== RESET & GLOBAL ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            color: #1a202c;
+            line-height: 1.8;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px 35px;
+            border-radius: 24px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.07);
+            border: 1px solid #e8ecf1;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            text-align: center;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #e8ecf1;
+            margin-bottom: 30px;
+        }
+
+        .header .icon {
+            font-size: 3rem;
+            margin-bottom: 4px;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #1a202c;
+        }
+
+        .header h1 .highlight {
+            background: linear-gradient(135deg, #f7971e, #e67e22);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .subtitle {
+            color: #718096;
+            font-size: 1rem;
+            margin-top: 4px;
+        }
+
+        .header .badge {
+            display: inline-block;
+            background: #edf2f7;
+            padding: 5px 20px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: #e67e22;
+            margin-top: 10px;
+            font-weight: 600;
+            border: 1px solid #e2e8f0;
+        }
+
+        .header .badge span {
+            color: #4a5568;
+            font-weight: 400;
+        }
+
+        /* ===== STEP ===== */
+        .step {
+            background: #fafbfc;
+            border-radius: 14px;
+            padding: 24px 24px;
+            margin-bottom: 18px;
+            border-left: 5px solid #f7971e;
+            border: 1px solid #e8ecf1;
+            border-left-width: 5px;
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+
+        .step:hover {
+            transform: translateX(4px);
+            box-shadow: 0 6px 20px rgba(247, 151, 30, 0.07);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 10px;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #f7971e, #e67e22);
+            color: #ffffff;
+            font-weight: 900;
+            font-size: 1rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .step-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #1a202c;
+        }
+
+        .step-content {
+            color: #4a5568;
+            padding-left: 8px;
+        }
+
+        .step-content p {
+            margin-bottom: 8px;
+        }
+
+        .step-content ul,
+        .step-content ol {
+            padding-left: 24px;
+            margin-bottom: 10px;
+        }
+
+        .step-content li {
+            margin-bottom: 6px;
+        }
+
+        .step-content li strong {
+            color: #2d3748;
+        }
+
+        /* ===== GAMBAR ===== */
+        .image-box {
+            background: #f7fafc;
+            border-radius: 12px;
+            padding: 14px;
+            margin: 14px 0 12px 0;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .image-box img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .image-box .caption {
+            font-size: 0.82rem;
+            color: #718096;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        /* ===== KOTAK ===== */
+        .tip-box {
+            background: #fffbeb;
+            border-left: 4px solid #f7971e;
+            padding: 14px 18px;
+            border-radius: 10px;
+            margin: 14px 0 6px 0;
+        }
+
+        .tip-box strong {
+            color: #b7791f;
+        }
+
+        .warning-box {
+            background: #fff5f0;
+            border-left: 4px solid #e53e3e;
+            padding: 14px 18px;
+            border-radius: 10px;
+            margin: 14px 0 6px 0;
+        }
+
+        .warning-box strong {
+            color: #c53030;
+        }
+
+        .success-box {
+            background: #f0fff4;
+            border-left: 4px solid #48bb78;
+            padding: 14px 18px;
+            border-radius: 10px;
+            margin: 14px 0 6px 0;
+        }
+
+        .success-box strong {
+            color: #276749;
+        }
+
+        .info-box {
+            background: #ebf8ff;
+            border-left: 4px solid #3182ce;
+            padding: 14px 18px;
+            border-radius: 10px;
+            margin: 14px 0 6px 0;
+        }
+
+        .info-box strong {
+            color: #2b6cb0;
+        }
+
+        /* ===== CODE / LINK ===== */
+        code {
+            background: #edf2f7;
+            padding: 2px 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: #d69e2e;
+            border: 1px solid #e2e8f0;
+            display: inline-block;
+        }
+
+        kbd {
+            background: #edf2f7;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.82rem;
+            border: 1px solid #cbd5e0;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            font-family: inherit;
+        }
+
+        a {
+            color: #e67e22;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== SPEED CARD ===== */
+        .speed-card {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin: 14px 0 10px 0;
+        }
+
+        .speed-item {
+            flex: 1;
+            min-width: 100px;
+            background: #f7fafc;
+            border-radius: 12px;
+            padding: 14px 18px;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+        }
+
+        .speed-item .value {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #1a202c;
+        }
+
+        .speed-item .label {
+            font-size: 0.8rem;
+            color: #718096;
+        }
+
+        .speed-item.recommended {
+            border-color: #f7971e;
+            background: #fffbeb;
+        }
+
+        .speed-item.recommended .value {
+            color: #b7791f;
+        }
+
+        .speed-item .badge-rec {
+            font-size: 0.65rem;
+            background: #f7971e;
+            color: #fff;
+            padding: 2px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        /* ===== SEPARATOR ===== */
+        .separator {
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #e2e8f0, transparent);
+            margin: 30px 0 25px 0;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer-main {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 2px solid #e8ecf1;
+        }
+
+        .footer-main .footer-text {
+            color: #4a5568;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .footer-main .footer-text strong {
+            color: #1a202c;
+        }
+
+        .footer-main .footer-sub {
+            color: #718096;
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+        }
+
+        /* ===== DISCORD BUTTON ===== */
+        .discord-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #5865F2;
+            color: #ffffff;
+            padding: 13px 38px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.35);
+            cursor: pointer;
+        }
+
+        .discord-btn:hover {
+            background: #4752c4;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(88, 101, 242, 0.45);
+            text-decoration: none;
+        }
+
+        .discord-btn:active {
+            transform: translateY(0);
+        }
+
+        .discord-btn svg {
+            width: 26px;
+            height: 26px;
+            fill: currentColor;
+            flex-shrink: 0;
+        }
+
+        .discord-btn .btn-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1.3;
+        }
+
+        .discord-btn .btn-text .small {
+            font-size: 0.65rem;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        /* ===== FOOTER BAWAH ===== */
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid #e8ecf1;
+            color: #a0aec0;
+            font-size: 0.82rem;
+        }
+
+        .footer-bottom a {
+            color: #5865F2;
+            text-decoration: none;
+            font-weight: 400;
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            .container {
+                padding: 18px 14px;
+            }
+
+            .header h1 {
+                font-size: 1.6rem;
+            }
+
+            .step {
+                padding: 18px 14px;
+            }
+
+            .step-title {
+                font-size: 1rem;
+            }
+
+            .step-number {
+                width: 32px;
+                height: 32px;
+                font-size: 0.85rem;
+            }
+
+            .discord-btn {
+                padding: 11px 20px;
+                font-size: 0.9rem;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .discord-btn .btn-text .small {
+                font-size: 0.6rem;
+            }
+
+            .speed-card {
+                flex-direction: column;
+            }
+
+            .speed-item {
+                min-width: unset;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .step-header {
+                gap: 10px;
+            }
+
+            .discord-btn svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        /* ===== FOOTER SUB ===== */
+        .footer-sub {
+            color: #4a5568;
+            font-size: 0.95rem;
+            margin-bottom: 18px;
+            line-height: 1.9;
+            text-align: center;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-sub br {
+            display: block;
+            content: "";
+            margin: 4px 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ========================================= -->
+        <!-- HEADER -->
+        <!-- ========================================= -->
+        <div class="header">
+            <div class="icon">📖</div>
+            <h1>7 Langkah <span class="highlight">Install Macro Moonwalk</span></h1>
+            <p class="subtitle">Tutorial Install Macro Moonwalk @M1XO</p>
+            <span class="badge">Pastikan Mengikuti Semua Dari Awal <span>Agar Tidak Terjadi Kesalahaan</span></span>
+        </div>
+
+        <!-- ========================================= -->
+        <!-- STEP 1 -->
+        <!-- ========================================= -->
+        <div class="step">
+            <div class="step-header">
+                <div class="step-number">1</div>
+                <div class="step-title">📥 Unduh AutoHotkey</div>
+            </div>
+            <div class="step-content">
+                <p>
+                    Unduh dan instal <strong>AutoHotkey</strong> melalui:
+                    <br>
+                    <a href="https://www.autohotkey.com/" target="_blank">👉 https://www.autohotkey.com/</a>
+                </p>
+
+                <div class="image-box">
+                    <img src="AutoHotkey - Google Chrome 02_07_2026 06_40_27.png" alt="Download AutoHotkey">
+                    <div class="caption">🖥 Tampilan situs resmi AutoHotkey</div>
+                </div>
+
+                <div class="tip-box">
+                    <strong>💡 Tip:</strong> Pastikan Anda mendownload dari situs resmi untuk keamanan.
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================= -->
+        <!-- STEP 2 -->
+        <!-- ========================================= -->
+        <div class="step">
+            <div class="step-header">
+                <div class="step-number">2</div>
+                <div class="step-title">🔀 Pilih Versi AutoHotkey</div>
+            </div>
+            <div class="step-content">
+                <p>
+                    Anda dapat menggunakan <strong>AutoHotkey Versi 1</strong> maupun <strong>Versi 2</strong>
+                    — <strong>keduanya didukung</strong> untuk menjalankan script macro.
+                </p>
+
+                <div class="image-box">
+                    <img src="AutoHotkey - Google Chrome 02_07_2026 06_40_31.png" alt="Pilih versi AutoHotkey">
+                    <div class="caption">Masih Ditampilan Original Website</div>
+                </div>
+
+                <div class="info-box">
+                    <strong>ℹ️ Info:</strong> Auto Hotkey 100% Aman Dan Sudah Di Verifikasi Oleh Norton
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================= -->
+        <!-- STEP 3 -->
+        <!-- ========================================= -->
+        <div class="step">
+            <div class="step-header">
+                <div class="step-number">3</div>
+                <div class="step-title">🛡️ Nonaktifkan Antivirus Sementara</div>
+            </div>
+            <div class="step-content">
+                <p>
+                    <strong>Nonaktifkan sementara Windows Defender atau antivirus</strong> apabila
+                    memblokir proses instalasi atau script.
+                </p>
+
+                <div class="image-box">
+                    <img src="https://i.pinimg.com/1200x/ed/b6/27/edb627000e294348414e77946c19ef9b.jpg" alt="Windows Defender">
+                    <div class="caption">🛡️ Windows Defender Security Center</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================= -->
+        <!-- STEP 4 -->
+        <!-- ========================================= -->
+        <div class="step">
+            <div class="step-header">
+                <div class="step-number">4</div>
+                <div class="step-title">✅ Langkah Selanjutnya</div>
+            </div>
+            <div class="step-content">
+                <p>
+                    Setelah AutoHotkey <strong>Berhasil Terinstall Silahkan Tutup AutoHotkey</strong>.
+                </p>
+
+                <div class="image-box">
+                    <img src="image.png" alt="Proses instalasi">
+                    <div class="caption">Jika Tampilan Ini Muncul Silahkan Di Close Aj</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================= -->
+        <!-- STEP 5 -->
+        <!-- ========================================= -->
+        <div class="step">
+            <div class="step-header">
+                <div class="step-number">5</div>
+                <div class="step-title">📂 Jalankan Script</div>
+            </div>
+            <div class="step-content">
+                <p>
+                    Setelah pembayaran dikonfirmasi, Download atau simpan file script macro
+                    yang telah diberikan. Lalu Double Click Untuk Membuka File
+                </p>
+
+                <div class="image-box">
+                    <img src="@ive - Discord 02_07_2026 06_49_47.png" alt="Simpan file script">
+                    <div class="caption">📁 File Macro Moonwalk</div>
+                </div>
+
+                <div class="tip-box">
+                    <strong>💡 Tip:</strong> Simpan file script di folder yang mudah diingat, misalnya
+                    <code>C:\Macro\Violence District @Mixo.ahk</code>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================= -->
+        <!-- STEP 6 -->
+        <!-- ========================================= -->
+        <div class="step">
+            <div class="step-header">
+                <div class="step-number">6</div>
+                <div class="step-title">🔐 Pop Up Saat Install</div>
+            </div>
+            <div class="step-content">
+                <p>
+                    Jika muncul Notifikasi Seperti Di Foto klik <strong>Yes </strong>
+                    untuk melanjutkan. Tunggu Beberapa Detik Lalu Klik OK 
+                </p>
+
+                <div class="image-box">
+                    <img src="test.png" alt="User Account Control">
+                    <div class="caption">Notifikasi</div>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Penting:</strong> Klik <strong>Yes</strong> agar script dapat berjalan
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================= -->
+        <!-- STEP 7 -->
+        <!-- ========================================= -->
+        <div class="step">
+            <div class="step-header">
+                <div class="step-number">7</div>
+                <div class="step-title">🚀 Jalankan Script &amp; Siap Digunakan</div>
+            </div>
+            <div class="step-content">
+                <p>
+                    <strong>Jalankan file script</strong>, lalu macro siap digunakan!
+                </p>
+
+                <div class="image-box">
+                    <img src="@ive - Discord 02_07_2026 06_49_47.png" alt="Script siap digunakan">
+                    <div class="caption">🎯 Script macro siap dijalankan</div>
+                </div>
+
+                <div class="success-box">
+                    <strong>✅ Selesai!</strong> Macro Anda sekarang siap digunakan. Selamat mencoba! 🎉
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================= -->
+        <!-- REKOMENDASI KECEPATAN -->
+        <!-- ========================================= -->
+        <div class="step" style="border-left-color: #3182ce;">
+            <div class="step-header">
+                <div class="step-number" style="background: linear-gradient(135deg, #3182ce, #2b6cb0);">⚡</div>
+                <div class="step-title">Rekomendasi Kecepatan</div>
+            </div>
+            <div class="step-content">
+
+                <div class="speed-card">
+                    <div class="speed-item">
+                        <div class="value">70 ms</div>
+                        <div class="label">⭐ Normal</div>
+                        <span class="badge-rec">Direkomendasikan</span>
+                        <div style="font-size:0.7rem;color:#a0aec0;margin-top:4px;">Natural &amp; profesional</div>
+                    </div>
+                    <div class="speed-item recommended">
+                        <div class="value">35 ms</div>
+                        <div class="label">🚀 Cepat</div>
+                        <div style="font-size:0.7rem;color:#a0aec0;margin-top:4px;">Untuk gerakan agresif</div>
+                    </div>
+                    <div class="speed-item">
+                        <div class="value">100+ ms</div>
+                        <div class="label">🐢 Lambat</div>
+                        <div style="font-size:0.7rem;color:#a0aec0;margin-top:4px;">Untuk latihan / pemula</div>
+                    </div>
+                </div>
+
+                <div class="success-box">
+                    <strong>✅ Rekomendasi:</strong> Gunakan <strong>35 ms</strong> untuk penggunaan yang lebih
+                    <strong>agresif dan cepat!</strong>.
+                </div>
+
+            </div>
+        </div>
+
+        <hr class="separator">
+
+        <!-- ========================================= -->
+        <!-- FOOTER + DISCORD BUTTON -->
+        <!-- ========================================= -->
+        <div class="footer-main">
+            <p class="footer-text">
+                <strong>📖 Tutorial Instalasi Macro AutoHotkey</strong> — by Mixo
+            </p>
+            
+            <p class="footer-sub">
+                M1XO Menerima Jasa Custom Macro Untuk Map Lain &amp; Custom Script Cheat Roblox Untuk Map Lain 100% Open Source!
+                <br>
+                Privasi Terjaga - Identitas Aman - Antiban
+            </p>
+        </div>
+
+    <!-- ========================================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================================= -->
+    <script>
+        // Smooth scroll ke atas
+        document.querySelector('a[href="#"]')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Efek hover highlight pada step
+        document.querySelectorAll('.step').forEach(step => {
+            step.addEventListener('mouseenter', function() {
+                this.style.borderLeftColor = '#f7971e';
+            });
+            step.addEventListener('mouseleave', function() {
+                this.style.borderLeftColor = '#f7971e';
+            });
+        });
+    </script>
+
+</body>
+</html>
